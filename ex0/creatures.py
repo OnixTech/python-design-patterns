@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Creature(ABC):
     def __init__(self, name: str, creature_type: str) -> None:
         self.name = name
-        self.type = crature_type
+        self.creature_type = creature_type
 
     @abstractmethod
     def attack(self) -> str:
@@ -22,7 +22,7 @@ class Flamiling(Creature):
         return "Flameling uses Ember!"
 
 
-class Pyrodon(Creature)
+class Pyrodon(Creature):
     def __init__(self) -> None:
         super().__init__("Pyrodon", "Fire/Flying")
 
@@ -30,14 +30,15 @@ class Pyrodon(Creature)
         return "Pyrodon uses Flamethrower!"
 
 
-class Aquabub(Creature)
+class Aquabub(Creature):
     def __init__(self) -> None:
         super().__init__("Aquabub", "Water")
 
     def attack(self) -> str:
         return "Aquabub uses Water Gun!"
 
-class Torragon(Creature)
+
+class Torragon(Creature):
     def __init__(self) -> None:
         super().__init__("Torragon", "Water")
 
