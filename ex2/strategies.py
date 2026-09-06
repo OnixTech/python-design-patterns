@@ -13,14 +13,14 @@ class BattleStrategy(ABC):
         pass
 
     @abstractmethod
-    def act(self) -> list[str]:
+    def act(self, creature: Creature) -> list[str]:
         pass
 
 
 class NormalStrategy(BattleStrategy):
 
     def is_valid(self, creature: Creature) -> bool:
-        return hasattr(creature, "attack")
+        return True
 
     def act(self, creature: Creature) -> list[str]:
         return [creature.attack()]
@@ -28,15 +28,13 @@ class NormalStrategy(BattleStrategy):
 
 class AggressiveStrategy(BattleStrategy):
 
-    def is_valid(self, creature: Creature) -> None:
-        if hasattr(creature, "transform"):
-            return hasattr(creature, "revert")
-        return False
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, TransformCapability)
 
     def act(self, creature: Creature):
         if not self.is_valid(creature):
             raise InvalidStrategyError(
-                "Creature cannot use DefensiveStrategy"
+                "Creature cannot use AggressiveStrategy"
                     )
 
         return [
@@ -49,7 +47,7 @@ class AggressiveStrategy(BattleStrategy):
 class DefensiveStrategy(BattleStrategy):
 
     def is_valid(self, creature: Creature) -> bool:
-        return hasattr(creature, "heal")
+        return isinstance(creature, HealCapability)
  
     def act(self, creature: Creature) -> list[str]:
         if not self.is_valid(creature):

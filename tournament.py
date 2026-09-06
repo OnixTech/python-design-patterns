@@ -11,15 +11,13 @@ from ex2.exceptions import InvalidStrategyError
 
 
 def single_battle(
-        opponents: list[tuple[CreatureFactury, BattleStrategy]]
+        opponents: list[tuple[CreatureFactory, BattleStrategy]]
         ) -> None:
     
-    print(opponents)
     print("*** Tournament ***")
 
     if len(opponents) < 2:
         raise ValueError("At least two opponents are requiered")
-        return
 
     try:
         for a in range(len(opponents)):
@@ -58,7 +56,7 @@ def main() -> None:
     print("Tournament 0 (basic)")
     print("[ (Flameling+Normal), (Healing+Defensive) ]")
 
-    tournament_0: list[Opponent] = [
+    tournament_0: list[tuple[CreatureFactory, BattleStrategy]] = [
         (FlameFactory(), normal),
         (HealingCreatureFactory(), defensive),
     ]
