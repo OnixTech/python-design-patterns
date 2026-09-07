@@ -13,7 +13,7 @@ from ex2.exceptions import InvalidStrategyError
 def single_battle(
         opponents: list[tuple[CreatureFactory, BattleStrategy]]
         ) -> None:
-    
+
     print("*** Tournament ***")
 
     if len(opponents) < 2:
@@ -87,6 +87,7 @@ def main() -> None:
     ]
 
     single_battle(tournament_2)
+
 
 if __name__ == "__main__":
     main()

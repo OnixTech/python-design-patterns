@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from typing import cast
 from ex0.creatures import Creature
 from ex1.capabilities import HealCapability, TransformCapability
 
@@ -37,10 +37,12 @@ class AggressiveStrategy(BattleStrategy):
                 "Creature cannot use AggressiveStrategy"
                     )
 
+        transformer = cast(TransformCapability, creature)
+
         return [
-                creature.transform(),
+                transformer.transform(),
                 creature.attack(),
-                creature.revert(),
+                transformer.revert(),
             ]
 
 
@@ -48,10 +50,13 @@ class DefensiveStrategy(BattleStrategy):
 
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, HealCapability)
- 
+
     def act(self, creature: Creature) -> list[str]:
         if not self.is_valid(creature):
             raise InvalidStrategyError(
                 "Creature cannot use DefensiveStrategy"
                     )
-        return [creature.attack(), creature.heal()]
+
+        healer = cast(HealCapability, creature)
+
+        return [creature.attack(), healer.heal()]
