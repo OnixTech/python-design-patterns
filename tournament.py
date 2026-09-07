@@ -66,7 +66,7 @@ def main() -> None:
     print("Tournament 1 (error)")
     print("[ (Flameling+Aggressive), (Healing+Defensive) ]")
 
-    tournament_1: list[Opponent] = [
+    tournament_1: list[tuple[CreatureFactory, BattleStrategy]] = [
         (FlameFactory(), aggressive),
         (HealingCreatureFactory(), defensive),
     ]
@@ -80,7 +80,7 @@ def main() -> None:
         "(Transform+Aggressive) ]"
     )
 
-    tournament_2: list[Opponent] = [
+    tournament_2: list[tuple[CreatureFactory, BattleStrategy]] = [
         (AquaFactory(), normal),
         (HealingCreatureFactory(), defensive),
         (TransformCreatureFactory(), aggressive),
